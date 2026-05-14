@@ -1,22 +1,47 @@
+/* THEME COLORS */
+:root {
+  --bg: #0b1220;              /* smoky dark blue */
+  --panel: #111a2e;          /* deeper blue panels */
+  --accent: #facc15;         /* warm yellow */
+  --accent-bg: rgba(250, 204, 21, 0.12);
+  --accent-border: #facc15;
+
+  --text: #e6eefc;
+  --text-muted: #9fb0d0;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* BASE */
+body {
+  background: radial-gradient(circle at top, #0b1220, #070b14);
+  color: var(--text);
+}
+
+/* COUNTER */
 .counter {
   font-size: 16px;
   padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   color: var(--accent);
   background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
   margin-bottom: 24px;
 
   &:hover {
     border-color: var(--accent-border);
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.25);
   }
+
   &:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 }
 
+/* HERO */
 .hero {
   position: relative;
 
@@ -25,6 +50,7 @@
   .vite {
     inset-inline: 0;
     margin: 0 auto;
+    filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.2));
   }
 
   .base {
@@ -33,29 +59,28 @@
     z-index: 0;
   }
 
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
   .framework {
-    z-index: 1;
+    position: absolute;
+    z-index: 2;
     top: 34px;
     height: 28px;
     transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
       scale(1.4);
+    filter: drop-shadow(0 0 14px rgba(96, 165, 250, 0.35)); /* blue glow */
   }
 
   .vite {
-    z-index: 0;
+    position: absolute;
+    z-index: 1;
     top: 107px;
     height: 26px;
-    width: auto;
     transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
       scale(0.8);
+    filter: drop-shadow(0 0 14px rgba(250, 204, 21, 0.35)); /* yellow glow */
   }
 }
 
+/* CENTER */
 #center {
   display: flex;
   flex-direction: column;
@@ -63,30 +88,34 @@
   place-content: center;
   place-items: center;
   flex-grow: 1;
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--shadow);
 
   @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
+    padding: 24px 20px;
     gap: 18px;
   }
 }
 
+/* NEXT STEPS */
 #next-steps {
   display: flex;
   border-top: 1px solid var(--border);
   text-align: left;
+  background: rgba(17, 26, 46, 0.6);
 
   & > div {
-    flex: 1 1 0;
+    flex: 1;
     padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
   }
 
   .icon {
     margin-bottom: 16px;
     width: 22px;
     height: 22px;
+    color: var(--accent);
   }
 
   @media (max-width: 1024px) {
@@ -104,6 +133,7 @@
   }
 }
 
+/* LINKS */
 #next-steps ul {
   list-style: none;
   padding: 0;
@@ -111,56 +141,44 @@
   gap: 8px;
   margin: 32px 0 0;
 
-  .logo {
-    height: 18px;
-  }
-
   a {
-    color: var(--text-h);
+    color: var(--text);
     font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
+    border-radius: 10px;
+    background: rgba(250, 204, 21, 0.08);
+    border: 1px solid var(--border);
     display: flex;
-    padding: 6px 12px;
+    padding: 8px 14px;
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    transition: box-shadow 0.3s;
+    transition: all 0.3s ease;
 
     &:hover {
-      box-shadow: var(--shadow);
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.25);
+      transform: translateY(-2px);
     }
+
     .button-icon {
       height: 18px;
       width: 18px;
+      color: var(--accent);
     }
   }
 
   @media (max-width: 1024px) {
-    margin-top: 20px;
     flex-wrap: wrap;
     justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
   }
 }
 
+/* SPACER */
 #spacer {
   height: 88px;
   border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
 }
 
+/* TICKS */
 .ticks {
   position: relative;
   width: 100%;
@@ -175,10 +193,11 @@
 
   &::before {
     left: 0;
-    border-left-color: var(--border);
+    border-left-color: var(--accent);
   }
+
   &::after {
     right: 0;
-    border-right-color: var(--border);
+    border-right-color: var(--accent);
   }
 }
